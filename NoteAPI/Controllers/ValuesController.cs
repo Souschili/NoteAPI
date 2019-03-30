@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NoteServiceLayer.Models;
+using NoteServiceLayer.Services;
 
 namespace NoteAPI.Controllers
 {
@@ -10,6 +12,13 @@ namespace NoteAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+
+        private readonly INoteService nservise;
+
+        public ValuesController(INoteService service)
+        {
+            nservise = service;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -17,29 +26,17 @@ namespace NoteAPI.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("note")]
+        public ActionResult<List<Note>> All()
         {
-            return "value";
+            return nservise.All();
         }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
+        
+        [HttpPost("add")]
+        public async Task<ActionResult> AddNote(Note note)
         {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+           await nservise.Add(note);
+           return Ok(note);
         }
     }
 }
