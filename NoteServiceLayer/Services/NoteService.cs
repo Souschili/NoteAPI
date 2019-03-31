@@ -17,11 +17,12 @@ namespace NoteServiceLayer.Services
         //добавить новость
         public async Task Add(Note note)
         {
-           await this.repository.AddAsync(note);
+            await this.repository.Add(note);
+             
         }
 
         //получить все новости для теста контролера
-        public List<Note> All()
+        public Task<List<Note>> All()
         {
             return repository.GetAll();
         }

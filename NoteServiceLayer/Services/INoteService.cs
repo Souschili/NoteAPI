@@ -8,7 +8,7 @@ namespace NoteServiceLayer.Services
 {
     public interface INoteService
     {
-        List<Note>All();
+        Task<List<Note>>All();
         Task Add(Note note);
 
     }

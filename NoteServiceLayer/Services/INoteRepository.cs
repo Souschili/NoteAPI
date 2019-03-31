@@ -6,7 +6,7 @@ namespace NoteServiceLayer.Services
 {
     public interface INoteRepository
     {
-        List<Note> GetAll();
-        Task AddAsync(Note note);
+        Task<List<Note>> GetAll ();
+        Task Add (Note note);
     }
 }

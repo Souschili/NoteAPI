@@ -1,4 +1,5 @@
 ﻿using DataLayer.EF;
+using Microsoft.EntityFrameworkCore;
 using NoteServiceLayer.Models;
 using NoteServiceLayer.Services;
 using System;
@@ -19,17 +20,15 @@ namespace DataLayer.Repository
 
         }
 
-        public async Task AddAsync(Note note)
+        public async Task Add (Note note)
         {
-           await _context.AddAsync(note);
-           await _context.SaveChangesAsync();
-        
+            await this._context.Notes.AddAsync(note);
+            await this._context.SaveChangesAsync();
         }
 
-        public List<Note> GetAll()
+        public async Task<List<Note>> GetAll ()
         {
-            // все записи пока что без привязки к юзеру
-            return _context.Notes.ToList();
+            return await _context.Notes.ToListAsync();
         }
     }
 }
