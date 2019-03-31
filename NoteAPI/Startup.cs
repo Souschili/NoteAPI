@@ -1,17 +1,17 @@
-﻿using DataLayer.EF;
-using DataLayer.Repository;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NoteServiceLayer.Services;
 using Microsoft.EntityFrameworkCore;
-using DataLayer.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DataLayer.Repository;
+using DataLayer.EF;
+using DataLayer.Identity;
 
 namespace NoteAPI
 {
